@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estela English Academy - Aprende Inglés Como Nunca Antes</title>
+    <meta name="description" content="Academia de inglés con clases de gramática, speaking y online. Plazas limitadas a 75€/mes.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts - Backup para Gill Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-red: #BD2D29;
+            --dark-red: #9A2421;
+            --white: #FFFFFF;
+            --off-white: #FAFAFA;
+            --light-gray: #F5F5F5;
+            --text-dark: #1A1A1A;
+            --text-gray: #666666;
+            --border-light: #E8E8E8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
+        }
+        
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+            margin-bottom: 1.25rem;
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-red);
+            text-decoration: none;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        .logo img {
+            height: 70px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-red);
+        }
+        
+        .cta-button:hover {
+            background: var(--dark-red);
+            border-color: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 30, 50, 0.2);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 6rem 2rem 2rem;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .mobile-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary-red);
+        }
+        
+        .mobile-menu .cta-button {
+            margin-top: 2rem;
+            display: inline-block;
+            text-align: center;
+            color: var(--white);
+            background: var(--primary-red);
+            width: 100%;
+        }
+        
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3rem 2rem;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(189, 45, 41, 0.03) 0%, 
+                rgba(255, 255, 255, 0) 50%, 
+                rgba(189, 45, 41, 0.08) 100%);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(189, 45, 41, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(189, 45, 41, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero-subtitle {
+            color: var(--primary-red);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .hero-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-features li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+        
+        .hero-features li i {
+            color: var(--primary-red);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Form */
+        .form-container {
+            background: linear-gradient(135deg, 
+                rgba(189, 45, 41, 0.12) 0%, 
+                rgba(255, 255, 255, 1) 100%);
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+        
+        .form-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(220, 30, 50, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-top: 0.2rem;
+        }
+        
+        .checkbox-group label {
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        
+        .submit-button:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 30, 50, 0.2);
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 2rem;
+            background: var(--off-white);
+            text-align: center;
+            border-radius: 24px;
+            margin: 2rem auto;
+            max-width: 1400px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .card-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        
+        .price-highlight {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 1.5rem 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .content-section.alt {
+            background: var(--off-white);
+            border-radius: 24px;
+            margin: 2rem auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        @media (max-width: 1200px) {
+            .content-grid {
+                gap: 3rem;
+            }
+            
+            .content-section {
+                padding: 5rem 2rem;
+            }
+            
+            .pricing-section {
+                padding: 5rem 2rem;
+            }
+            
+            .reviews-section {
+                padding: 5rem 2rem;
+            }
+        }
+        
+        .content-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .content-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .content-text ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .content-text ul li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+        
+        .content-text ul li::before {
+            content: '•';
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+        }
+        
+        .highlight-text {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .feature-description {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            padding: 6rem 2rem;
+            background: var(--light-gray);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            margin: 2rem auto;
+            max-width: 1400px;
+        }
+        
+        .reviews-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('2.jpg') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: 0;
+            filter: blur(3px);
+        }
+        
+        .reviews-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reviews-container {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            overflow: hidden;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        .reviews-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(to left, transparent, var(--light-gray));
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .reviews-container::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--light-gray));
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .reviews-slider {
+            display: flex;
+            gap: 2rem;
+            animation: slide 40s linear infinite;
+        }
+        
+        .reviews-slider:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-370px * 8 - 2rem * 8));
+            }
+        }
+        
+        @media (max-width: 640px) {
+            @keyframes slide {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-300px * 8 - 2rem * 8));
+                }
+            }
+        }
+        
+        .review-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: left;
+            border: 1px solid var(--border-light);
+            min-width: 350px;
+            max-width: 350px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 280px;
+        }
+        
+        .review-stars {
+            color: #FFB800;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .review-text {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            flex: 1;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .review-author {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .review-source {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .review-source i {
+            color: #4285F4;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-float i {
+            color: white;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-main {
+            grid-column: span 1;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-cambridge-social {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-red);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                gap: 2rem;
+                padding: 2.5rem 2rem;
+            }
+            
+            .pricing-cards {
+                gap: 1.5rem;
+            }
+            
+            .features-grid {
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            nav .cta-button {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                margin-top: 80px;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .content-section.alt {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .pricing-section {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .reviews-section {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .content-section h2 {
+                text-align: center;
+            }
+            
+            .content-section .section-subtitle {
+                text-align: center !important;
+            }
+            
+            .section-title {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            
+            .footer-main {
+                grid-column: span 1;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
+            }
+            
+            .footer-main > div:first-child {
+                justify-content: center;
+            }
+            
+            .footer-cambridge-social {
+                justify-content: center;
+            }
+            
+            .footer-section:not(.footer-main) {
+                text-align: center;
+            }
+            
+            .footer-section h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+            
+            footer {
+                padding: 3rem 1.5rem 1.5rem;
+            }
+            
+            .review-card {
+                min-width: 280px;
+                max-width: 280px;
+                padding: 2rem;
+                min-height: 240px;
+            }
+            
+            .review-text {
+                font-size: 0.9rem;
+            }
+            
+            .reviews-container::before,
+            .reviews-container::after {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#inicio" class="logo">
+                <img src="logo.png" alt="Estela English Academy Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#clases">Clases</a></li>
+                <li><a href="#metodo">Método</a></li>
+                <li><a href="#opiniones">Opiniones</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="https://campusestelaenglishacademy.com/" target="_blank" class="cta-button">Campus Virtual</a>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay"></div>
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#clases">Clases</a></li>
+            <li><a href="#metodo">Método</a></li>
+            <li><a href="#opiniones">Opiniones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a href="https://campusestelaenglishacademy.com/" target="_blank" class="cta-button">Campus Virtual</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="hero-subtitle">Más de 35 años de experiencia</p>
+            <h1>Aprende Inglés Como Nunca Antes</h1>
+            <p class="hero-description">
+                Metodología propia y personalizada. Clases de inglés en El Prat de Llobregat, 
+                online e híbridas para todos los niveles y edades.
+            </p>
+            <ul class="hero-features">
+                <li><i class="fas fa-check-circle"></i> MATRÍCULA GRATIS</li>
+                <li><i class="fas fa-graduation-cap"></i> TODOS LOS NIVELES Y EDADES</li>
+                <li><i class="fas fa-book"></i> MATERIAL ÚNICO INCLUIDO</li>
+                <li><i class="fas fa-laptop-house"></i> PRESENCIAL, ONLINE E HÍBRIDO</li>
+                <li><i class="fas fa-award"></i> MÁS DE 35 AÑOS DE EXPERIENCIA</li>
+            </ul>
+        </div>
+        
+        <div class="form-container">
+            <h3 class="form-title">Reserva tu 1ª clase</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Por favor, introduce un email válido">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{9,15}" title="Por favor, introduce un número de teléfono válido (9-15 dígitos)">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edad">Edad</label>
+                        <input type="text" id="edad" name="edad">
+                    </div>
+                    <div class="form-group">
+                        <label for="motivo">¿Por qué estudiar inglés?</label>
+                        <input type="text" id="motivo" name="motivo" placeholder="Ej: trabajo, viajes...">
+                    </div>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="privacidad" name="privacidad" required>
+                    <label for="privacidad">He leído y acepto la Política de Privacidad *</label>
+                </div>
+                
+                <button type="submit" class="submit-button">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="precios">
+        <h2 class="section-title">Número de plazas limitadas</h2>
+        <p class="price-highlight">75€ al mes</p>
+        
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="card-icon"><i class="fas fa-spell-check"></i></div>
+                <h3 class="card-title">1 hora de gramática</h3>
+                <p class="card-description">Una hora de gramática a la semana en grupos reducidos de máximo 10 alumnos</p>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="card-icon"><i class="fas fa-comments"></i></div>
+                <h3 class="card-title">1 hora de speaking</h3>
+                <p class="card-description">Una hora de conversación a la semana para practicar y ganar fluidez</p>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="card-icon"><i class="fas fa-infinity"></i></div>
+                <h3 class="card-title">Material ilimitado</h3>
+                <p class="card-description">Material individual, ilimitado e intransferible incluido en la cuota</p>
+            </div>
+        </div>
+        
+        <a href="https://wa.me/34669253677?text=Hola,%20quiero%20información%20sobre%20las%20clases%20de%20inglés" target="_blank" class="cta-button">¡Apúntate ya!</a>
+    </section>
+
+    <!-- Grammar Classes -->
+    <section class="content-section" id="clases">
+        <div class="content-grid">
+            <div class="content-text">
+                <h2><i class="fas fa-spell-check" style="color: var(--primary-red); margin-right: 1rem;"></i>Clases de Gramática</h2>
+                <p class="section-subtitle" style="text-align: left;">Construye tu inglés sobre unos <strong style="color: var(--primary-red);">cimientos sólidos</strong></p>
+                <ul>
+                    <li><strong>Grupos reducidos:</strong> Clases de máximo 10 alumnos para atención personalizada</li>
+                    <li><strong>Material propio:</strong> Diseñado por nosotros y estructurado para que avances a tu ritmo</li>
+                    <li><strong>Individual e intransferible:</strong> Todo el material es únicamente tuyo</li>
+                    <li><strong>Sin niveles separados:</strong> Cada alumno avanza a su ritmo. Solo compartes profesor con más alumnos</li>
+                    <li><strong>Progreso garantizado:</strong> Nuestro índice con estructuras gramaticales te asegura la evolución que desees</li>
+                </ul>
+            </div>
+            
+            <div class="content-image">
+                <img src="4.jpg" alt="Clase de gramática" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 4/3;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="content-section alt">
+        <h2 class="section-title">La formación que te acompañará toda la vida</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3 class="feature-title">Aprobar Exámenes de Inglés</h3>
+                <p class="feature-description">Primaria, Secundaria, Bachillerato, Universidad, Cambridge, TOEFL... Sea cual sea el examen que tienes que aprobar, te preparamos un plan a tu medida</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+                <h3 class="feature-title">Mejorar en el Trabajo</h3>
+                <p class="feature-description">¿Tu jefe te pide mejorar el inglés enfocado a negocios? Te organizamos tu plan para que inviertas tu tiempo en llegar al nivel de inglés que necesitas</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                <h3 class="feature-title">Inglés para la Vida</h3>
+                <p class="feature-description">Inglés para situaciones reales de la vida. Para cuando quieras viajar, mudarte al extranjero o simplemente comunicarte con confianza</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaking Classes -->
+    <section class="content-section">
+        <div class="content-grid">
+            <div class="content-image">
+                <img src="3.jpg" alt="Clase de speaking" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 4/3;">
+            </div>
+            
+            <div class="content-text">
+                <h2><i class="fas fa-comments" style="color: var(--primary-red); margin-right: 1rem;"></i>Clases de Speaking</h2>
+                <p class="section-subtitle" style="text-align: left;">Así llegarás a ser <strong style="color: var(--primary-red);">bilingüe</strong></p>
+                <ul>
+                    <li><strong>Grupos reducidos:</strong> Clases de máximo 10 alumnos</li>
+                    <li><strong>Tu mismo nivel:</strong> Conversación en inglés con gente de tu nivel desde tu primera clase</li>
+                    <li><strong>Práctica real:</strong> Ponéis en práctica lo aprendido mientras amplías vocabulario y ganas fluidez</li>
+                    <li><strong>Aprende del error:</strong> Escucha, repite, te corregimos y vuelves a intentar. ¡Cuánto necesites!</li>
+                    <li><strong>Método eficaz:</strong> Te equivocarás y repetirás hasta que lo domines</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Classes -->
+    <section class="content-section alt">
+        <div class="content-grid">
+            <div class="content-text">
+                <h2><i class="fas fa-laptop" style="color: var(--primary-red); margin-right: 1rem;"></i>Clases Online</h2>
+                <p class="section-subtitle" style="text-align: left;">Lo mismo que presencial pero a través de <strong style="color: var(--primary-red);">Google Meet</strong></p>
+                <ul>
+                    <li><strong>Grupos reducidos:</strong> Clases de máximo 10 alumnos</li>
+                    <li><strong>Google Meet:</strong> Utilizamos Google Meet para las videollamadas, ¡completamente gratuito!</li>
+                    <li><strong>Campus Virtual:</strong> Todo el material disponible 24/7 en nuestro Campus Virtual</li>
+                    <li><strong>Material individualizado:</strong> Completamente personalizado y únicamente tuyo</li>
+                    <li><strong>Gramática y speaking:</strong> Clases con el mismo método que presencial</li>
+                </ul>
+            </div>
+            
+            <div class="content-image">
+                <img src="2.jpg" alt="Clases online" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 4/3;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="content-section" id="metodo">
+        <h2 class="section-title"><i class="fas fa-star" style="color: var(--primary-red); margin-right: 1rem;"></i>Aprende inglés como nunca antes</h2>
+        <p class="section-subtitle"><strong style="color: var(--primary-red);">Make your goals come true!</strong> Do not procrastinate</p>
+        
+        <div class="content-grid" style="margin-top: 4rem;">
+            <div class="content-image">
+                <img src="5.jpg" alt="Metodología" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; aspect-ratio: 1/1;">
+            </div>
+            
+            <div class="content-text">
+                <h3 style="margin-bottom: 2rem;">Metodología propia y personalizada</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray); margin-bottom: 2rem;">
+                    Con más de 35 años de experiencia, hemos desarrollado una metodología única que se adapta a cada alumno. 
+                    Ya sea para aprobar exámenes, mejorar en el trabajo o simplemente para la vida, tenemos el plan perfecto para ti.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray);">
+                    Nuestro material propio, diseñado específicamente para que avances a tu propio ritmo, 
+                    combinado con clases reducidas y atención personalizada, garantiza tu progreso.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="opiniones">
+        <h2 class="section-title">Forma parte de esta familia</h2>
+        <p class="section-subtitle">★★★★★ Excelente - A base de 56 reseñas en Google</p>
+        
+        <div class="reviews-container">
+            <div class="reviews-slider">
+                <!-- Primera ronda de reviews -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Es una muy buena academia en la que cada uno va a su ritmo y aprende según sus intereses y su nivel individual. Además, es muy familiar y acogedora."</p>
+                    <p class="review-author">Paula Fernández</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 27/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Llevo años yendo y es de lo mejor del Prat para estudiar inglés, Estela y Javi son muy buenos profesores."</p>
+                    <p class="review-author">Pablo Alrc</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 27/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Excelente academia con un trato muy familiar"</p>
+                    <p class="review-author">Sergi Beltran Vila</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 20/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Muy buena academia y cada alumno aprende acorde a su nivel."</p>
+                    <p class="review-author">Elena Ramos</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"La pregunta que todos deberíamos hacernos es... ¿hay alguna academia de inglés mejor que esta? Maravillosa experiencia, he aprendido mucho inglés desde que estoy aquí. La cercanía que los profesores tienen con los alumnos ayudan mucho en el proceso de aprendizaje; haciéndolo más fácil y divertido. En resumen: increíble."</p>
+                    <p class="review-author">Dídac Gómez Martínez</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Hay una relación muy familiar entre los profesores y los alumnos, es genial."</p>
+                    <p class="review-author">Joel Soto Fdez</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Las clases son excelentes, muy divertidas y dinámicas."</p>
+                    <p class="review-author">Maria Bou</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"La mejor academia del prat. Los profesores son muy simpáticos y cercanos a los alumnos. He estado aquí durante años y no me iría ni aunque me pagasen."</p>
+                    <p class="review-author">KVM</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <!-- Segunda ronda de reviews (duplicadas para loop infinito) -->
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Es una muy buena academia en la que cada uno va a su ritmo y aprende según sus intereses y su nivel individual. Además, es muy familiar y acogedora."</p>
+                    <p class="review-author">Paula Fernández</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 27/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Llevo años yendo y es de lo mejor del Prat para estudiar inglés, Estela y Javi son muy buenos profesores."</p>
+                    <p class="review-author">Pablo Alrc</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 27/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Excelente academia con un trato muy familiar"</p>
+                    <p class="review-author">Sergi Beltran Vila</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 20/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Muy buena academia y cada alumno aprende acorde a su nivel."</p>
+                    <p class="review-author">Elena Ramos</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"La pregunta que todos deberíamos hacernos es... ¿hay alguna academia de inglés mejor que esta? Maravillosa experiencia, he aprendido mucho inglés desde que estoy aquí. La cercanía que los profesores tienen con los alumnos ayudan mucho en el proceso de aprendizaje; haciéndolo más fácil y divertido. En resumen: increíble."</p>
+                    <p class="review-author">Dídac Gómez Martínez</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Hay una relación muy familiar entre los profesores y los alumnos, es genial."</p>
+                    <p class="review-author">Joel Soto Fdez</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Las clases son excelentes, muy divertidas y dinámicas."</p>
+                    <p class="review-author">Maria Bou</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"La mejor academia del prat. Los profesores son muy simpáticos y cercanos a los alumnos. He estado aquí durante años y no me iría ni aunque me pagasen."</p>
+                    <p class="review-author">KVM</p>
+                    <p class="review-source"><i class="fab fa-google"></i> Google Reviews · 19/01/2023</p>
+                </div>
+            </div>
+        </div>
+        
+        <a href="https://wa.me/34669253677?text=Hola,%20quiero%20información%20sobre%20las%20clases%20de%20inglés" target="_blank" class="cta-button" style="margin-top: 3rem; display: inline-block;">Reserva tu plaza</a>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/34669253677?text=Hola,%20quiero%20información%20sobre%20las%20clases%20de%20inglés" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-section footer-main">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <img src="logo.png" alt="Logo Estela English Academy" style="height: 50px; width: auto;">
+                    <h3 style="margin-bottom: 0;">Estela English Academy</h3>
+                </div>
+                <p>Tu academia de inglés de confianza. Aprende con los mejores profesionales.</p>
+                <div class="footer-cambridge-social">
+                    <img src="logocambridge.png" alt="Cambridge English Qualifications" style="height: 60px; width: auto;">
+                    <div class="social-links" style="margin-top: 0;">
+                        <a href="https://www.instagram.com/estelaenglishacademy/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/34669253677" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> +34 669 25 36 77</p>
+                <p><i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i> WhatsApp: 669 25 36 77</p>
+                <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> academiadeinglesestela24@gmail.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> Carrer de Joan Maragall, 21</p>
+                <p>08820 El Prat de Llobregat</p>
+                <p>Barcelona, España</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horario</h3>
+                <p><strong>Lunes a Jueves:</strong></p>
+                <p>8:30 - 11:30 | 15:15 - 21:30</p>
+                <p><strong>Viernes:</strong></p>
+                <p>8:30 - 11:30 | 16:15 - 19:15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Estela English Academy. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+
+        function toggleMobileMenu() {
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close menu when clicking on a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Formulario enviado! En breve nos pondremos en contacto contigo.');
+            this.reset();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
