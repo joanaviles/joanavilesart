@@ -83,6 +83,9 @@ function initMobileMenu() {
 
   overlay.addEventListener('click', close);
 
+  const closeBtn = document.querySelector('.mobile-menu-close');
+  if (closeBtn) closeBtn.addEventListener('click', close);
+
   document.querySelectorAll('.mobile-menu a').forEach(a => {
     a.addEventListener('click', close);
   });
@@ -233,8 +236,8 @@ function initMap() {
   if (!mapEl || typeof L === 'undefined') return;
 
   const map = L.map('obras-map', {
-    center: [45, 10],
-    zoom: 3,
+    center: [41.7, 1.8],
+    zoom: 8,
     zoomControl: true,
     scrollWheelZoom: false,
   });
@@ -378,12 +381,9 @@ function initObraRows() {
    GALLERY — GLightbox
    ---------------------------------------------------------- */
 function initGallery() {
-  if (typeof GLightbox === 'undefined') return;
-  GLightbox({
-    selector: '.galeria-item a',
-    touchNavigation: true,
-    loop: true,
-    autoplayVideos: false,
+  // Lightbox disabled — hover effect only
+  document.querySelectorAll('.galeria-item a').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
   });
 }
 
@@ -451,6 +451,71 @@ function syncCardData() {
 }
 
 /* ----------------------------------------------------------
+   PAGE LOADER
+   ---------------------------------------------------------- */
+function initLoader() {
+  const loader = document.getElementById('page-loader');
+  if (!loader) return;
+
+  function hideLoader() {
+    loader.classList.add('hidden');
+  }
+
+  if (document.readyState === 'complete') {
+    setTimeout(hideLoader, 300);
+  } else {
+    window.addEventListener('load', () => setTimeout(hideLoader, 300));
+  }
+}
+
+/* ----------------------------------------------------------
+   IMAGE SKELETON — fade in on load
+   ---------------------------------------------------------- */
+function initImageFade() {
+  document.querySelectorAll('.obra-card-img img').forEach(img => {
+    if (img.complete && img.naturalWidth) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+  });
+}
+
+/* ----------------------------------------------------------
+   NAV INDICATOR — sliding blue underline
+   ---------------------------------------------------------- */
+function initNavIndicator() {
+  const nav = document.querySelector('.nav-links');
+  if (!nav) return;
+
+  const indicator = document.createElement('span');
+  indicator.className = 'nav-indicator';
+  nav.appendChild(indicator);
+
+  function moveTo(el) {
+    indicator.style.width   = el.offsetWidth + 'px';
+    indicator.style.transform = `translateX(${el.offsetLeft}px)`;
+    indicator.style.opacity = '1';
+  }
+
+  function toActive() {
+    const active = nav.querySelector('a.active');
+    if (active) moveTo(active);
+    else indicator.style.opacity = '0';
+  }
+
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('mouseenter', () => moveTo(a));
+    a.addEventListener('mouseleave', toActive);
+  });
+
+  toActive();
+
+  // Keep indicator in sync when active section changes
+  window.addEventListener('scroll', toActive, { passive: true });
+}
+
+/* ----------------------------------------------------------
    LANG PILL — sliding indicator
    ---------------------------------------------------------- */
 function moveLangPill(selector) {
@@ -475,6 +540,8 @@ function initLangPills() {
    INIT
    ---------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
+  initLoader();
+
   // Populate artworks array from HTML data
   artworks.push(...getArtworks());
 
@@ -491,6 +558,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initGallery();
   initContactForm();
   setTimeout(initLangPills, 30);
+  setTimeout(initNavIndicator, 30);
+  initImageFade();
 
   setTimeout(syncCardData, 20);
 

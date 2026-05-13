@@ -108,6 +108,7 @@ const translations = {
 
     // Footer
     'footer.rights': 'Tots els drets reservats',
+    'footer.devby':  'Web desenvolupada per',
     'footer.nav':    'Navegació',
     'footer.contact':'Contacte',
     'footer.tagline': "Estudi artístic especialitzat en el disseny, la creació i el manteniment d'imatgeria festiva i religiosa.",
@@ -208,6 +209,7 @@ const translations = {
     'contacto.info.title':    'Información de contacto',
 
     'footer.rights': 'Todos los derechos reservados',
+    'footer.devby':  'Web desarrollada por',
     'footer.nav':    'Navegación',
     'footer.contact':'Contacto',
     'footer.tagline': "Estudio artístico especializado en el diseño, la creación y el mantenimiento de imaginería festiva y religiosa.",
@@ -308,6 +310,7 @@ const translations = {
     'contacto.info.title':    'Contact information',
 
     'footer.rights': 'All rights reserved',
+    'footer.devby':  'Website developed by',
     'footer.nav':    'Navigation',
     'footer.contact':'Contact',
     'footer.tagline': "Artistic studio specialised in the design, creation and maintenance of festive and religious imagery.",
